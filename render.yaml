@@ -1,0 +1,17 @@
+# Render blueprint. The persistent disk needs a paid instance (starter).
+services:
+  - type: web
+    name: laraib-portfolio
+    runtime: node
+    plan: starter
+    buildCommand: echo no build needed
+    startCommand: node server.js
+    envVars:
+      - key: DATA_DIR
+        value: /var/data
+      - key: ADMIN_PASSWORD
+        sync: false
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
